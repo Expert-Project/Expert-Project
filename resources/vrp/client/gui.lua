@@ -13,8 +13,8 @@ local AnimVars = { nil,nil,false,49 }
 -- THREADBLOCK
 -----------------------------------------------------------------------------------------------------------------------------------------
 CreateThread(function()
-	local HensaBinds = GetResourceKvpString("HensaBinds")
-	Binded = (HensaBinds and json.decode(HensaBinds)) or {}
+	local ExpertBinds = GetResourceKvpString("ExpertBinds")
+	Binded = (ExpertBinds and json.decode(ExpertBinds)) or {}
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WALKERS
@@ -377,7 +377,7 @@ end)
 RegisterCommand("binds",function(source,Message)
 	if Message[1] and Message[2] and parseInt(Message[1]) >= 1 and parseInt(Message[1]) <= 9 then
 		Binded[Message[1]] = Message[2]
-		SetResourceKvp("HensaBinds",json.encode(Binded))
+		SetResourceKvp("ExpertBinds",json.encode(Binded))
 		TriggerEvent("Notify","Animações","A animação <b>"..Message[2].."</b> foi salvo na tecla <b>"..Message[1].."</b>.","verde",5000)
 	end
 end)

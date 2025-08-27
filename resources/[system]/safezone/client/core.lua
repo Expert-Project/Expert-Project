@@ -7,8 +7,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("safezone",Hensa)
+Expert = {}
+Tunnel.bindInterface("safezone",Expert)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -121,7 +121,7 @@ CreateThread(function()
 					Active = Index
 					NetworkSetFriendlyFireOption(false)
 					LocalPlayer["state"]:set("Safezone",Active,true)
-					LocalPlayer["state"]:set("Hensa",true,false)
+					LocalPlayer["state"]:set("Expert",true,false)
 					SetEntityInvincible(Ped,true)
 					SetLocalPlayerAsGhost(true)
 
@@ -137,7 +137,7 @@ CreateThread(function()
 					SetEntityInvincible(Ped,false)
 					NetworkSetFriendlyFireOption(true)
 					LocalPlayer["state"]:set("Safezone",Active,true)
-					LocalPlayer["state"]:set("Hensa",false,false)
+					LocalPlayer["state"]:set("Expert",false,false)
 				end
 			end
 		end

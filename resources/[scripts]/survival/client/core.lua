@@ -6,8 +6,8 @@ vRPS = Tunnel.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("survival",Hensa)
+Expert = {}
+Tunnel.bindInterface("survival",Expert)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -162,7 +162,7 @@ CreateThread(function()
 								LocalPlayer["state"]:set("Crawl",false,true)
 								Death["Timer"] = not LocalPlayer["state"]["Arena"] and DeathTimer or 5
 								SendNUIMessage({ Action = "Update", Payload = { Death["Title"],Death["Text"],Death["Timer"] } })
-								LocalPlayer["state"]:set("Hensa",true,false)
+								LocalPlayer["state"]:set("Expert",true,false)
 								NetworkSetFriendlyFireOption(false)
 								SetEntityInvincible(Ped,true)
 								SetLocalPlayerAsGhost(true)
@@ -239,13 +239,13 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKCRAWL
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.CheckCrawl()
+function Expert.CheckCrawl()
 	return Death["Status"] and Crawl["Timer"] > 0 and GetGameTimer() >= Crawl["Cooldown"] and true or false
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATECRAWL
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.UpdateCrawl(Health)
+function Expert.UpdateCrawl(Health)
 	if Health then
 		exports["survival"]:Revive(Health)
 		Crawl["Cooldown"] = GetGameTimer() + (Crawl["Minute"] * 60000)
@@ -275,7 +275,7 @@ function FinishSurvival()
 	SetEntityInvincible(Ped,false)
 	ClearFacialIdleAnimOverride(Ped)
 	NetworkSetFriendlyFireOption(true)
-	LocalPlayer["state"]:set("Hensa",false,false)
+	LocalPlayer["state"]:set("Expert",false,false)
 
 	TriggerEvent("paramedic:Reset")
 
@@ -309,7 +309,7 @@ exports("Revive",function(Health,Arena)
 
 	SetEntityInvincible(Ped,false)
 	SetEntityHealth(Ped,Health or 101)
-	LocalPlayer["state"]:set("Hensa",false,false)
+	LocalPlayer["state"]:set("Expert",false,false)
 
 	if Arena then
 		SetPedArmour(Ped,99)
@@ -346,7 +346,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REVIVE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Revive(Health,Arena)
+function Expert.Revive(Health,Arena)
 	exports["survival"]:Revive(Health,Arena)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------

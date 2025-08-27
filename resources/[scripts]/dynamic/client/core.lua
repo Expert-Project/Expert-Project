@@ -195,7 +195,7 @@ RegisterCommand("EmergencyFunctions",function()
 		local Health = GetEntityHealth(Ped)
 
 		if CheckPolice() then
-			if GlobalState["HensaPerimeters"] then
+			if GlobalState["ExpertPerimeters"] then
 				exports["dynamic"]:AddButton("Perímetros", "Abrir painel de perímetros.", "perimeters:Open", "", false, false)
 			end
 

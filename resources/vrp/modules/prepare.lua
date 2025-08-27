@@ -213,16 +213,16 @@ vRP.Prepare("lb-phone/GetPhone","SELECT * FROM phone_phones WHERE id = @id AND o
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CLEARTABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
-vRP.Prepare("hensa/Playerdata","DELETE FROM playerdata WHERE Information = '[]' OR Information = '{}'")
-vRP.Prepare("hensa/Entitydata","DELETE FROM entitydata WHERE Information = '[]' OR Information = '{}'")
-vRP.Prepare("hensa/Transactions","DELETE FROM transactions WHERE UNIX_TIMESTAMP() >= Timeset")
-vRP.Prepare("hensa/Premium","UPDATE accounts SET Premium = '0' WHERE UNIX_TIMESTAMP() >= Premium")
+vRP.Prepare("expert/Playerdata","DELETE FROM playerdata WHERE Information = '[]' OR Information = '{}'")
+vRP.Prepare("expert/Entitydata","DELETE FROM entitydata WHERE Information = '[]' OR Information = '{}'")
+vRP.Prepare("expert/Transactions","DELETE FROM transactions WHERE UNIX_TIMESTAMP() >= Timeset")
+vRP.Prepare("expert/Premium","UPDATE accounts SET Premium = '0' WHERE UNIX_TIMESTAMP() >= Premium")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- THREADSTART
 -----------------------------------------------------------------------------------------------------------------------------------------
 CreateThread(function()
-	vRP.Query("hensa/Premium")
-	vRP.Query("hensa/Playerdata")
-	vRP.Query("hensa/Entitydata")
-	vRP.Query("hensa/Transactions")
+	vRP.Query("expert/Premium")
+	vRP.Query("expert/Playerdata")
+	vRP.Query("expert/Entitydata")
+	vRP.Query("expert/Transactions")
 end)

@@ -7,8 +7,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("garages", Hensa)
+Expert = {}
+Tunnel.bindInterface("garages", Expert)
 vSERVER = Tunnel.getInterface("garages")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DECORATIONS
@@ -31,7 +31,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SPAWNPOSITION
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.SpawnPosition(Select)
+function Expert.SpawnPosition(Select)
 	local Slot = "0"
 	local Checks = 0
 	local Selected = {}
@@ -61,7 +61,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CREATEVEHICLE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.CreateVehicle(Model, Network, Engine, Health, Customize, Windows, Tyres, Brakes, Admin)
+function Expert.CreateVehicle(Model, Network, Engine, Health, Customize, Windows, Tyres, Brakes, Admin)
 	local Count = 0
 
 	while not NetworkDoesNetworkIdExist(Network) do
@@ -207,7 +207,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SEARCHBLIP
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.SearchBlip(Coords)
+function Expert.SearchBlip(Coords)
 	if DoesBlipExist(Searched) then
 		RemoveBlip(Searched)
 		Searched = nil
@@ -234,7 +234,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STARTHOTWIRED
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.StartHotwired()
+function Expert.StartHotwired()
 	local Ped = PlayerPedId()
 	if not Hotwired and LoadAnim(Dict) then
 		TaskPlayAnim(Ped, Dict, Anim, 8.0, 8.0, -1, 49, 1, 0, 0, 0)
@@ -244,7 +244,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STOPHOTWIRED
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.StopHotwired(Vehicle)
+function Expert.StopHotwired(Vehicle)
 	local Ped = PlayerPedId()
 	if Hotwired and LoadAnim(Dict) then
 		StopAnimTask(Ped, Dict, Anim, 8.0)
@@ -261,13 +261,13 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATEHOTWIRED
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.UpdateHotwired(Status)
+function Expert.UpdateHotwired(Status)
 	Hotwired = Status
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REGISTERDECORS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.RegisterDecors(Vehicle)
+function Expert.RegisterDecors(Vehicle)
 	SetVehicleHasBeenOwnedByPlayer(Vehicle, true)
 	SetVehicleNeedsToBeHotwired(Vehicle, false)
 	DecorSetInt(Vehicle, "Player_Vehicle", -1)

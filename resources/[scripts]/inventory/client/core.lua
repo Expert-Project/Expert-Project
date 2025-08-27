@@ -8,8 +8,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("inventory",Hensa)
+Expert = {}
+Tunnel.bindInterface("inventory",Expert)
 vGARAGE = Tunnel.getInterface("garages")
 vSERVER = Tunnel.getInterface("inventory")
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -146,7 +146,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FISHING
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Fishing(Item)
+function Expert.Fishing(Item)
 	local Fishings = false
 	local Ped = PlayerPedId()
 	local Coords = GetEntityCoords(Ped)
@@ -192,7 +192,7 @@ local TyreList = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TYRES
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Tyres()
+function Expert.Tyres()
 	local Ped = PlayerPedId()
 	if not IsPedInAnyVehicle(Ped) then
 		local Vehicle,Model = vRP.ClosestVehicle(7)
@@ -216,7 +216,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TYREHEALTH
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.tyreHealth(Network,Tyre)
+function Expert.tyreHealth(Network,Tyre)
 	if NetworkDoesNetworkIdExist(Network) then
 		local Vehicle = NetToEnt(Network)
 		if DoesEntityExist(Vehicle) then
@@ -227,13 +227,13 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- OBJECTEXISTS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.ObjectExists(Coords,Hash,Distance)
+function Expert.ObjectExists(Coords,Hash,Distance)
 	return DoesObjectOfTypeExistAtCoords(Coords[1],Coords[2],Coords[3],Distance or 0.35,Hash,true)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKINTERIOR
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.CheckInterior()
+function Expert.CheckInterior()
 	return GetInteriorFromEntity(PlayerPedId()) ~= 0
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -363,7 +363,7 @@ local Restaurante = PolyZone:Create({
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RESTAURANT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Restaurant()
+function Expert.Restaurant()
 	local Ped = PlayerPedId()
 	local Coords = GetEntityCoords(Ped)
 
@@ -400,7 +400,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ENTIITYCOORDSZ
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.EntityCoordsZ()
+function Expert.EntityCoordsZ()
 	local Ped = PlayerPedId()
 	local Coords = GetEntityCoords(Ped)
 	local _,GroundZ = GetGroundZFor_3dCoord(Coords["x"],Coords["y"],Coords["z"])

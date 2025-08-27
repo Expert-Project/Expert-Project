@@ -8,8 +8,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("boosting",Hensa)
+Expert = {}
+Tunnel.bindInterface("boosting",Expert)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -756,7 +756,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- EXPERIENCE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Experience()
+function Expert.Experience()
 	local source = source
 	local Passport = vRP.Passport(source)
 	local Experience = vRP.GetExperience(Passport,"Boosting") or 0
@@ -766,7 +766,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ACTIVES
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Actives()
+function Expert.Actives()
 	local Result = false
 	local source = source
 	local Passport = vRP.Passport(source)
@@ -793,7 +793,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PENDINGS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Pendings()
+function Expert.Pendings()
 	local Results = {}
 	local source = source
 	local Passport = vRP.Passport(source)
@@ -831,7 +831,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ACCEPT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Accept(Selected)
+function Expert.Accept(Selected)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] then
@@ -855,7 +855,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SCRATCH
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Scratch(Selected)
+function Expert.Scratch(Selected)
 	local source = source
 
 	return vRP.Passport(source) and true or false
@@ -863,7 +863,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRANSFER
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Transfer(Selected,OtherPassport)
+function Expert.Transfer(Selected,OtherPassport)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Selected and OtherPassport and Pendings[Passport] and Pendings[OtherPassport] and Pendings[Passport][Selected] and CountTable(Pendings[OtherPassport]) < 3 then
@@ -883,7 +883,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DECLINE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Decline(Selected)
+function Expert.Decline(Selected)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Pendings[Passport] and Pendings[Passport][Selected] then
@@ -911,7 +911,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CREATEVEHICLE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.CreateVehicle(Model,Class,Coords)
+function Expert.CreateVehicle(Model,Class,Coords)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then

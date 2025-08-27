@@ -8,8 +8,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("bank", Hensa)
+Expert = {}
+Tunnel.bindInterface("bank", Expert)
 vKEYBOARD = Tunnel.getInterface("keyboard")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
@@ -39,7 +39,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECK
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Check(Number)
+function Expert.Check(Number)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -47,7 +47,7 @@ function Hensa.Check(Number)
 			Explosives[Number] = nil
 
 			local Coords = vRP.GetEntityCoords(source)
-			TriggerClientEvent("Hensa:Explosion", source, Coords["x"], Coords["y"], Coords["z"], 2, 1.0, true, false, 1.0, true)
+			TriggerClientEvent("Expert:Explosion", source, Coords["x"], Coords["y"], Coords["z"], 2, 1.0, true, false, 1.0, true)
 
 			TriggerClientEvent("Notify", source, "Aviso", "Este ATM estava sabotado.", "vermelho", 5000)
 
@@ -187,7 +187,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- HOME
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Home()
+function Expert.Home()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -209,7 +209,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRANSACTIONHISTORY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.TransactionHistory()
+function Expert.TransactionHistory()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -219,7 +219,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DEPOSIT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Deposit(Valuation)
+function Expert.Deposit(Valuation)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] and parseInt(Valuation) > 0 then
@@ -240,7 +240,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WITHDRAW
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Withdraw(Valuation)
+function Expert.Withdraw(Valuation)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] and parseInt(Valuation) > 0 and not exports["bank"]:CheckFines(Passport) then
@@ -259,7 +259,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRANSFER
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Transfer(OtherPassport,Valuation)
+function Expert.Transfer(OtherPassport,Valuation)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] and OtherPassport ~= Passport and parseInt(Valuation) > 0 and not exports["bank"]:CheckFines(Passport) then
@@ -320,7 +320,7 @@ end
 ----------------------------------------------------------------------------------------------------------------------------------------
 -- FINELIST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.FineList()
+function Expert.FineList()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -340,7 +340,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FINEPAYMENT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.FinePayment(Number)
+function Expert.FinePayment(Number)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] then
@@ -364,7 +364,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FINEPAYMENTALL
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.FinePaymentAll()
+function Expert.FinePaymentAll()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] then
@@ -408,7 +408,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TAXLIST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.TaxList()
+function Expert.TaxList()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -418,7 +418,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TAXPAYMENT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.TaxPayment(Number)
+function Expert.TaxPayment(Number)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] then
@@ -452,7 +452,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INVOICELIST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.InvoiceList()
+function Expert.InvoiceList()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -462,7 +462,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MAKEINVOICE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.MakeInvoice(OtherPassport,Valuation,Reason)
+function Expert.MakeInvoice(OtherPassport,Valuation,Reason)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] and OtherPassport ~= Passport and parseInt(Valuation) > 0 then
@@ -487,7 +487,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INVOICEPAYMENT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.InvoicePayment(Number)
+function Expert.InvoicePayment(Number)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] then
@@ -537,7 +537,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INVESTMENTS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Investments()
+function Expert.Investments()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -561,7 +561,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INVEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Invest(Valuation)
+function Expert.Invest(Valuation)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] and parseInt(Valuation) > 0 then
@@ -588,7 +588,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INVESTRESCUE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.InvestRescue()
+function Expert.InvestRescue()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] then
@@ -663,7 +663,7 @@ AddEventHandler("bank:ExplodeAtm",function(Number)
 		Player(source)["state"]["Buttons"] = true
 
 		if not vRP.Safecrack(source,1) then
-			TriggerClientEvent("Hensa:Explosion",source,Coords.x,Coords.y,Coords.z,2,1.0,true,false,1.0,true)
+			TriggerClientEvent("Expert:Explosion",source,Coords.x,Coords.y,Coords.z,2,1.0,true,false,1.0,true)
 			Active[Passport] = nil
 			Player(source)["state"]["Buttons"] = false
 			return
@@ -698,7 +698,7 @@ AddEventHandler("bank:ExplodeAtm",function(Number)
 				TriggerClientEvent("player:Residual",source,"Resquício de Línter")
 				vRP.UpgradeStress(Passport,5)
 
-				TriggerClientEvent("Hensa:Explosion",source,Coords.x,Coords.y,Coords.z,70,1.0,true,false,1.0,true)
+				TriggerClientEvent("Expert:Explosion",source,Coords.x,Coords.y,Coords.z,70,1.0,true,false,1.0,true)
 			end
 
 			vRPC.StopAnim(source)

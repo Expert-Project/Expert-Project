@@ -8,8 +8,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("player", Hensa)
+Expert = {}
+Tunnel.bindInterface("player", Expert)
 vCLIENT = Tunnel.getInterface("player")
 vSKINSHOP = Tunnel.getInterface("skinshop")
 vKEYBOARD = Tunnel.getInterface("keyboard")
@@ -397,7 +397,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WANTEDLIST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.WantedList()
+function Expert.WantedList()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -475,7 +475,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GETREPUTATION
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.GetReputation(source)
+function Expert.GetReputation(source)
 	local Passport = vRP.Passport(source)
 	if Passport then
 		local Reputation = {

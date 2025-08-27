@@ -5,7 +5,7 @@ lua54 'yes'
 version '6.0.0'
 author 'ImagicTheCat'
 
-hensa 'yes'
+expert 'yes'
 creator 'yes'
 
 client_scripts {

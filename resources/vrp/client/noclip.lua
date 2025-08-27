@@ -11,7 +11,7 @@ function tvRP.NoClip(source)
 
 	if NoClip then
 		LocalPlayer["state"]:set("Invisible", true, false)
-		LocalPlayer["state"]:set("Hensa", true, false)
+		LocalPlayer["state"]:set("Expert", true, false)
 
 		SetEntityCollision(Ped,false,false)
 		SetEntityVisible(Ped,false,false)
@@ -23,7 +23,7 @@ function tvRP.NoClip(source)
 		SetEntityVisible(Ped,true,false)
 		SetEntityInvincible(Ped,false)
 
-		LocalPlayer["state"]:set("Hensa", false, false)
+		LocalPlayer["state"]:set("Expert", false, false)
 		LocalPlayer["state"]:set("Invisible", false, false)
 
 		TriggerEvent("Notify","Atenção","Modo <b>NoClip</b> desativado.", "amarelo", 5000)

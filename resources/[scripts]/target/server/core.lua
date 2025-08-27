@@ -8,8 +8,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("target", Hensa)
+Expert = {}
+Tunnel.bindInterface("target", Expert)
 vKEYBOARD = Tunnel.getInterface("keyboard")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
@@ -26,7 +26,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ACADEMY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Academy(Number)
+function Expert.Academy(Number)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not GlobalState["Academy-"..Number] and not Workout[Passport] then
@@ -43,7 +43,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ACADEMYWEIGHT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.AcademyWeight(Number)
+function Expert.AcademyWeight(Number)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and GlobalState["Academy-"..Number] and Workout[Passport] == Number then
@@ -64,7 +64,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKIN
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.CheckIn()
+function Expert.CheckIn()
 	local Return = false
 	local source = source
 	local Alimentation = false

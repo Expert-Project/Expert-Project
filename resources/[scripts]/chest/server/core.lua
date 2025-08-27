@@ -8,8 +8,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("chest",Hensa)
+Expert = {}
+Tunnel.bindInterface("chest",Expert)
 vKEYBOARD = Tunnel.getInterface("keyboard")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
@@ -71,7 +71,7 @@ local ChestItens = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECK
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Check()
+function Expert.Check()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not exports["hud"]:Reposed(Passport, source) and not exports["hud"]:Wanted(Passport, source) then
@@ -83,7 +83,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PERMISSIONS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Permissions(Name,Mode,Item)
+function Expert.Permissions(Name,Mode,Item)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -189,7 +189,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MOUNT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Mount()
+function Expert.Mount()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Open[Passport] then
@@ -289,7 +289,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STORE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Store(Item,Slot,Amount,Target,Inactived)
+function Expert.Store(Item,Slot,Amount,Target,Inactived)
 	local source = source
 	local Amount = parseInt(Amount,true)
 	local Passport = vRP.Passport(source)
@@ -353,7 +353,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TAKE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Take(Item,Slot,Amount,Target)
+function Expert.Take(Item,Slot,Amount,Target)
 	local source = source
 	local Amount = parseInt(Amount,true)
 	local Passport = vRP.Passport(source)
@@ -396,7 +396,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Update(Slot,Target,Amount)
+function Expert.Update(Slot,Target,Amount)
 	local source = source
 	local Amount = parseInt(Amount,true)
 	local Passport = vRP.Passport(source)

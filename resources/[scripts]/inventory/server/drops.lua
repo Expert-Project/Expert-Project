@@ -22,7 +22,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DROPS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Drops(Item,Slot,Amount)
+function Expert.Drops(Item,Slot,Amount)
 	local source = source
 	local Amount = parseInt(Amount,true)
 	local Passport = vRP.Passport(source)
@@ -103,7 +103,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PICKUP
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Pickup(Number,Route,Target,Amount)
+function Expert.Pickup(Number,Route,Target,Amount)
 	local source = source
 	local Amount = parseInt(Amount,true)
 	local Passport = vRP.Passport(source)

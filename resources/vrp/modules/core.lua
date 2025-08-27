@@ -70,7 +70,7 @@ function vRP.Files(archive, text, silenced)
 		archiveFile:close()
 		
 		if not silenced then
-			print("[HENSA.SITE] Files: Arquivo "..filePath.." editado.")
+			print("[EXPERT.SITE] Files: Arquivo "..filePath.." editado.")
 		end
 	end
 end
@@ -129,22 +129,22 @@ end
 -- INSIDEPROPERTYS
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.InsidePropertys(Passport, Coords)
-	local HensaTable = vRP.Datatable(Passport)
-	if HensaTable then
-		HensaTable["Pos"] = { x = Optimize(Coords["x"]), y = Optimize(Coords["y"]), z = Optimize(Coords["z"]) }
+	local ExpertTable = vRP.Datatable(Passport)
+	if ExpertTable then
+		ExpertTable["Pos"] = { x = Optimize(Coords["x"]), y = Optimize(Coords["y"]), z = Optimize(Coords["z"]) }
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INVENTORY
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.Inventory(Passport)
-	local HensaTable = vRP.Datatable(Passport)
-	if HensaTable then
-		if not HensaTable["Inventory"] then
-			HensaTable["Inventory"] = {}
+	local ExpertTable = vRP.Datatable(Passport)
+	if ExpertTable then
+		if not ExpertTable["Inventory"] then
+			ExpertTable["Inventory"] = {}
 		end
 
-		return HensaTable["Inventory"]
+		return ExpertTable["Inventory"]
 	end
 
 	return {}
@@ -278,35 +278,35 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 function Disconnect(source, Health, Armour, Coords, Reason)
 	local Passport = vRP.Passport(source)
-	local HensaTable = vRP.Datatable(Passport)
+	local ExpertTable = vRP.Datatable(Passport)
 	if Passport then
 		exports["discord"]:Embed("Disconnect","**Source:** "..source.."\n**Passaporte:** "..vRP.Passport(source).."\n**Health:** "..Health.."\n**Armour:** "..Armour.."\n**Cds:** "..Coords.."\n**Motivo:** "..Reason)
 
-		if HensaTable then
+		if ExpertTable then
 			if CharactersArena[Passport] then
-				HensaTable["Pos"] = CharactersArena[Passport]["Pos"]
-				HensaTable["Stress"] = CharactersArena[Passport]["Stress"]
-				HensaTable["Hunger"] = CharactersArena[Passport]["Hunger"]
-				HensaTable["Thirst"] = CharactersArena[Passport]["Thirst"]
-				HensaTable["Armour"] = CharactersArena[Passport]["Armour"]
-				HensaTable["Health"] = CharactersArena[Passport]["Health"]
-				HensaTable["Inventory"] = CharactersArena[Passport]["Inventory"]
+				ExpertTable["Pos"] = CharactersArena[Passport]["Pos"]
+				ExpertTable["Stress"] = CharactersArena[Passport]["Stress"]
+				ExpertTable["Hunger"] = CharactersArena[Passport]["Hunger"]
+				ExpertTable["Thirst"] = CharactersArena[Passport]["Thirst"]
+				ExpertTable["Armour"] = CharactersArena[Passport]["Armour"]
+				ExpertTable["Health"] = CharactersArena[Passport]["Health"]
+				ExpertTable["Inventory"] = CharactersArena[Passport]["Inventory"]
 
 				local Route = CharactersArena[Passport]["Route"]
 				GlobalState["Arena:"..Route] = GlobalState["Arena:"..Route] - 1
 				CharactersArena[Passport] = nil
 			else
-				HensaTable["Health"] = Health
-				HensaTable["Armour"] = Armour
-				HensaTable["Pos"] = { x = Optimize(Coords["x"]), y = Optimize(Coords["y"]), z = Optimize(Coords["z"]) }
+				ExpertTable["Health"] = Health
+				ExpertTable["Armour"] = Armour
+				ExpertTable["Pos"] = { x = Optimize(Coords["x"]), y = Optimize(Coords["y"]), z = Optimize(Coords["z"]) }
 			end
 
-			if HensaTable["Health"] <= 100 then
+			if ExpertTable["Health"] <= 100 then
 				TriggerClientEvent("hud:Textform", -1, Coords, "<b>Passaporte:</b> " .. Passport .. "<br><b>Motivo:</b> " .. Reason, CombatLogMinutes * 60000)
 			end
 
 			TriggerEvent("Disconnect", Passport, source)
-			vRP.Query("playerdata/SetData",{ Passport = Passport, Name = "Datatable", Information = json.encode(HensaTable) })
+			vRP.Query("playerdata/SetData",{ Passport = Passport, Name = "Datatable", Information = json.encode(ExpertTable) })
 			Characters[source] = nil
 			Sources[Passport] = nil
 
@@ -322,9 +322,9 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 AddEventHandler("SaveServer", function()
 	for k,v in pairs(Sources) do
-		local HensaTable = vRP.Datatable(k)
-		if HensaTable then
-			vRP.Query("playerdata/SetData",{ Passport = k, Name = "Datatable", Information = json.encode(HensaTable) })
+		local ExpertTable = vRP.Datatable(k)
+		if ExpertTable then
+			vRP.Query("playerdata/SetData",{ Passport = k, Name = "Datatable", Information = json.encode(ExpertTable) })
 		end
 	end
 end)
@@ -831,7 +831,7 @@ CreateThread(function()
 					return
 				end
 
-				local message = string.format("Base Hensa\n\n"..Lang.Position.."%s\nEvite punições, fique por dentro das regras de conduta.\nAtualizações frequentes, deixe sua sugestão em nosso discord.", pos, #Queue.List, dots)
+				local message = string.format("Base Expert\n\n"..Lang.Position.."%s\nEvite punições, fique por dentro das regras de conduta.\nAtualizações frequentes, deixe sua sugestão em nosso discord.", pos, #Queue.List, dots)
 				data.deferrals.update(message)
 			end
 		end)
@@ -1044,7 +1044,7 @@ function vRP.LowerName(Passport)
 	if Characters[Source] then
 		return Characters[Source]["Name"]
 	else
-		return "Hensa"
+		return "Expert"
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2441,71 +2441,71 @@ end
 -- CHOSENCHARACTER
 -----------------------------------------------------------------------------------------------------------------------------------------
 AddEventHandler("ChosenCharacter", function(Passport, source)
-	if GetResourceMetadata("vrp", "hensa") == "yes" then
-		local HensaTable = vRP.Datatable(Passport)
-		if HensaTable then
-			if HensaTable["Pos"] then
-				if not (HensaTable["Pos"]["x"] and HensaTable["Pos"]["y"] and HensaTable["Pos"]["z"]) then
-					HensaTable["Pos"] = { x = SpawnCoords["x"], y = SpawnCoords["y"], z = SpawnCoords["z"] }
+	if GetResourceMetadata("vrp", "expert") == "yes" then
+		local ExpertTable = vRP.Datatable(Passport)
+		if ExpertTable then
+			if ExpertTable["Pos"] then
+				if not (ExpertTable["Pos"]["x"] and ExpertTable["Pos"]["y"] and ExpertTable["Pos"]["z"]) then
+					ExpertTable["Pos"] = { x = SpawnCoords["x"], y = SpawnCoords["y"], z = SpawnCoords["z"] }
 				end
 			else
-				HensaTable["Pos"] = { x = SpawnCoords["x"], y = SpawnCoords["y"], z = SpawnCoords["z"] }
+				ExpertTable["Pos"] = { x = SpawnCoords["x"], y = SpawnCoords["y"], z = SpawnCoords["z"] }
 			end
 
-			if not HensaTable["Skin"] then
-				HensaTable["Skin"] = "mp_m_freemode_01"
+			if not ExpertTable["Skin"] then
+				ExpertTable["Skin"] = "mp_m_freemode_01"
 			end
 
-			if not HensaTable["Inventory"] then
-				HensaTable["Inventory"] = {}
+			if not ExpertTable["Inventory"] then
+				ExpertTable["Inventory"] = {}
 			end
 
-			if not HensaTable["Health"] then
-				HensaTable["Health"] = 200
+			if not ExpertTable["Health"] then
+				ExpertTable["Health"] = 200
 			end
 
-			if not HensaTable["Armour"] then
-				HensaTable["Armour"] = 0
+			if not ExpertTable["Armour"] then
+				ExpertTable["Armour"] = 0
 			end
 
-			if not HensaTable["Stress"] then
-				HensaTable["Stress"] = 0
+			if not ExpertTable["Stress"] then
+				ExpertTable["Stress"] = 0
 			end
 
-			if not HensaTable["Hunger"] then
-				HensaTable["Hunger"] = 100
+			if not ExpertTable["Hunger"] then
+				ExpertTable["Hunger"] = 100
 			end
 
-			if not HensaTable["Thirst"] then
-				HensaTable["Thirst"] = 100
+			if not ExpertTable["Thirst"] then
+				ExpertTable["Thirst"] = 100
 			end
 
-			if not HensaTable["Weight"] then
-				HensaTable["Weight"] = DefaultBackpackNormal
+			if not ExpertTable["Weight"] then
+				ExpertTable["Weight"] = DefaultBackpackNormal
 			end
 
-			if HensaTable["Health"] <= 100 then
+			if ExpertTable["Health"] <= 100 then
 				IsDead = true
 			end
 
-			vRPC.Skin(source, HensaTable["Skin"])
-			vRP.SetArmour(source, HensaTable["Armour"])
-			vRPC.SetHealth(source, HensaTable["Health"], IsDead)
-			vRP.Teleport(source, HensaTable["Pos"]["x"], HensaTable["Pos"]["y"], HensaTable["Pos"]["z"])
+			vRPC.Skin(source, ExpertTable["Skin"])
+			vRP.SetArmour(source, ExpertTable["Armour"])
+			vRPC.SetHealth(source, ExpertTable["Health"], IsDead)
+			vRP.Teleport(source, ExpertTable["Pos"]["x"], ExpertTable["Pos"]["y"], ExpertTable["Pos"]["z"])
 
 			TriggerClientEvent("barbershop:Apply", source, vRP.UserData(Passport, "Barbershop"))
 			TriggerClientEvent("skinshop:Apply", source, vRP.UserData(Passport, "Clothings"))
 			TriggerClientEvent("tattooshop:Apply", source, vRP.UserData(Passport, "Tatuagens"))
 
-			TriggerClientEvent("hud:Thirst", source, HensaTable["Thirst"])
-			TriggerClientEvent("hud:Hunger", source, HensaTable["Hunger"])
-			TriggerClientEvent("hud:Stress", source, HensaTable["Stress"])
+			TriggerClientEvent("hud:Thirst", source, ExpertTable["Thirst"])
+			TriggerClientEvent("hud:Hunger", source, ExpertTable["Hunger"])
+			TriggerClientEvent("hud:Stress", source, ExpertTable["Stress"])
 
 			TriggerClientEvent("vRP:Active", source, Passport, vRP.FullName(Passport), vRP.Inventory(Passport))
 
 			Player(source)["state"]["Passport"] = Passport
 
-			local Position = vec3(HensaTable["Pos"]["x"], HensaTable["Pos"]["y"], HensaTable["Pos"]["z"])
+			local Position = vec3(ExpertTable["Pos"]["x"], ExpertTable["Pos"]["y"], ExpertTable["Pos"]["z"])
 			if GetResourceMetadata("vrp", "creator") == "yes" then
 				if vRP.UserData(Passport, "Creator") == 1 then
 					TriggerClientEvent("spawn:Finish", source, Position, false)
@@ -2521,7 +2521,7 @@ AddEventHandler("ChosenCharacter", function(Passport, source)
 			Global[Passport] = true
 		end
 	else
-		print("Seu vRP foi modificado. Por favor, entre em contato com a equipe Hensa.")
+		print("Seu vRP foi modificado. Por favor, entre em contato com a equipe Expert.")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2597,9 +2597,9 @@ RegisterCommand("gg", function(source)
 			vRP.ClearInventory(Passport)
 		end
 
-		local HensaTable = vRP.Datatable(Passport)
-		if WipeBackpackDeath and HensaTable and HensaTable["Weight"] then
-			HensaTable["Weight"] = DefaultBackpackNormal
+		local ExpertTable = vRP.Datatable(Passport)
+		if WipeBackpackDeath and ExpertTable and ExpertTable["Weight"] then
+			ExpertTable["Weight"] = DefaultBackpackNormal
 
 			local Consult = vRP.GetServerData("Backpacks:"..Passport)
 			if Consult["Comum"] then
@@ -2621,14 +2621,14 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.ClearInventory(Passport)
 	local source = vRP.Source(Passport)
-	local HensaTable = vRP.Datatable(Passport)
-	if source and HensaTable and HensaTable["Inventory"] then
+	local ExpertTable = vRP.Datatable(Passport)
+	if source and ExpertTable and ExpertTable["Inventory"] then
 		exports["inventory"]:CleanWeapons(parseInt(Passport), true)
 
 		TriggerEvent("DebugObjects", parseInt(Passport))
 		TriggerEvent("DebugWeapons", parseInt(Passport))
 
-		HensaTable["Inventory"] = {}
+		ExpertTable["Inventory"] = {}
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2636,18 +2636,18 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.UpgradeThirst(Passport, Amount)
 	local source = vRP.Source(Passport)
-	local HensaTable = vRP.Datatable(Passport)
+	local ExpertTable = vRP.Datatable(Passport)
 
-	if HensaTable and source then
-		HensaTable["Thirst"] = (HensaTable["Thirst"] or 0) + (tonumber(Amount) or 0)
+	if ExpertTable and source then
+		ExpertTable["Thirst"] = (ExpertTable["Thirst"] or 0) + (tonumber(Amount) or 0)
 
-		if HensaTable["Thirst"] > 100 then
-			HensaTable["Thirst"] = 100
-		elseif HensaTable["Thirst"] < 0 then
-			HensaTable["Thirst"] = 0
+		if ExpertTable["Thirst"] > 100 then
+			ExpertTable["Thirst"] = 100
+		elseif ExpertTable["Thirst"] < 0 then
+			ExpertTable["Thirst"] = 0
 		end
 
-		TriggerClientEvent("hud:Thirst", source, HensaTable["Thirst"])
+		TriggerClientEvent("hud:Thirst", source, ExpertTable["Thirst"])
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2655,18 +2655,18 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.UpgradeHunger(Passport, Amount)
 	local source = vRP.Source(Passport)
-	local HensaTable = vRP.Datatable(Passport)
+	local ExpertTable = vRP.Datatable(Passport)
 
-	if HensaTable and source then
-		HensaTable["Hunger"] = (HensaTable["Hunger"] or 0) + (tonumber(Amount) or 0)
+	if ExpertTable and source then
+		ExpertTable["Hunger"] = (ExpertTable["Hunger"] or 0) + (tonumber(Amount) or 0)
 
-		if HensaTable["Hunger"] > 100 then
-			HensaTable["Hunger"] = 100
-		elseif HensaTable["Hunger"] < 0 then
-			HensaTable["Hunger"] = 0
+		if ExpertTable["Hunger"] > 100 then
+			ExpertTable["Hunger"] = 100
+		elseif ExpertTable["Hunger"] < 0 then
+			ExpertTable["Hunger"] = 0
 		end
 
-		TriggerClientEvent("hud:Hunger", source, HensaTable["Hunger"])
+		TriggerClientEvent("hud:Hunger", source, ExpertTable["Hunger"])
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2674,18 +2674,18 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.UpgradeStress(Passport, Amount)
 	local source = vRP.Source(Passport)
-	local HensaTable = vRP.Datatable(Passport)
+	local ExpertTable = vRP.Datatable(Passport)
 
-	if HensaTable and source then
-		HensaTable["Stress"] = (HensaTable["Stress"] or 0) + (tonumber(Amount) or 0)
+	if ExpertTable and source then
+		ExpertTable["Stress"] = (ExpertTable["Stress"] or 0) + (tonumber(Amount) or 0)
 
-		if HensaTable["Stress"] > 100 then
-			HensaTable["Stress"] = 100
-		elseif HensaTable["Stress"] < 0 then
-			HensaTable["Stress"] = 0
+		if ExpertTable["Stress"] > 100 then
+			ExpertTable["Stress"] = 100
+		elseif ExpertTable["Stress"] < 0 then
+			ExpertTable["Stress"] = 0
 		end
 
-		TriggerClientEvent("hud:Stress", source, HensaTable["Stress"])
+		TriggerClientEvent("hud:Stress", source, ExpertTable["Stress"])
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2693,16 +2693,16 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.DowngradeThirst(Passport, Amount)
 	local source = vRP.Source(Passport)
-	local HensaTable = vRP.Datatable(Passport)
+	local ExpertTable = vRP.Datatable(Passport)
 
-	if HensaTable and source then
-		HensaTable["Thirst"] = (HensaTable["Thirst"] or 100) - (tonumber(Amount) or 0)
+	if ExpertTable and source then
+		ExpertTable["Thirst"] = (ExpertTable["Thirst"] or 100) - (tonumber(Amount) or 0)
 
-		if HensaTable["Thirst"] < 0 then
-			HensaTable["Thirst"] = 0
+		if ExpertTable["Thirst"] < 0 then
+			ExpertTable["Thirst"] = 0
 		end
 
-		TriggerClientEvent("hud:Thirst", source, HensaTable["Thirst"])
+		TriggerClientEvent("hud:Thirst", source, ExpertTable["Thirst"])
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2710,16 +2710,16 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.DowngradeHunger(Passport, Amount)
 	local source = vRP.Source(Passport)
-	local HensaTable = vRP.Datatable(Passport)
+	local ExpertTable = vRP.Datatable(Passport)
 
-	if HensaTable and source then
-		HensaTable["Hunger"] = (HensaTable["Hunger"] or 100) - (tonumber(Amount) or 0)
+	if ExpertTable and source then
+		ExpertTable["Hunger"] = (ExpertTable["Hunger"] or 100) - (tonumber(Amount) or 0)
 
-		if HensaTable["Hunger"] < 0 then
-			HensaTable["Hunger"] = 0
+		if ExpertTable["Hunger"] < 0 then
+			ExpertTable["Hunger"] = 0
 		end
 
-		TriggerClientEvent("hud:Hunger", source, HensaTable["Hunger"])
+		TriggerClientEvent("hud:Hunger", source, ExpertTable["Hunger"])
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2727,16 +2727,16 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.DowngradeStress(Passport, Amount)
 	local source = vRP.Source(Passport)
-	local HensaTable = vRP.Datatable(Passport)
+	local ExpertTable = vRP.Datatable(Passport)
 
-	if HensaTable and source then
-		HensaTable["Stress"] = (HensaTable["Stress"] or 0) - (tonumber(Amount) or 0)
+	if ExpertTable and source then
+		ExpertTable["Stress"] = (ExpertTable["Stress"] or 0) - (tonumber(Amount) or 0)
 
-		if HensaTable["Stress"] < 0 then
-			HensaTable["Stress"] = 0
+		if ExpertTable["Stress"] < 0 then
+			ExpertTable["Stress"] = 0
 		end
 
-		TriggerClientEvent("hud:Stress", source, HensaTable["Stress"])
+		TriggerClientEvent("hud:Stress", source, ExpertTable["Stress"])
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2764,13 +2764,13 @@ end)
 -- 	local source = source
 -- 	local Passport = vRP.Passport(source)
 -- 	if Passport then
--- 		local HensaTable = vRP.Datatable(Passport)
--- 		if HensaTable then
--- 			HensaTable["Thirst"] = (HensaTable["Thirst"] or 100) - (ConsumeThirst or 0)
--- 			HensaTable["Hunger"] = (HensaTable["Hunger"] or 100) - (ConsumeHunger or 0)
+-- 		local ExpertTable = vRP.Datatable(Passport)
+-- 		if ExpertTable then
+-- 			ExpertTable["Thirst"] = (ExpertTable["Thirst"] or 100) - (ConsumeThirst or 0)
+-- 			ExpertTable["Hunger"] = (ExpertTable["Hunger"] or 100) - (ConsumeHunger or 0)
 
--- 			HensaTable["Thirst"] = math.max(HensaTable["Thirst"], 0)
--- 			HensaTable["Hunger"] = math.max(HensaTable["Hunger"], 0)
+-- 			ExpertTable["Thirst"] = math.max(ExpertTable["Thirst"], 0)
+-- 			ExpertTable["Hunger"] = math.max(ExpertTable["Hunger"], 0)
 -- 		end
 -- 	end
 -- end
@@ -2794,24 +2794,24 @@ end
 -- GETEXPERIENCE
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.GetExperience(Passport, Work)
-	local HensaTable = vRP.Datatable(Passport)
-	if HensaTable and not HensaTable[Work] then
-		HensaTable[Work] = 0
+	local ExpertTable = vRP.Datatable(Passport)
+	if ExpertTable and not ExpertTable[Work] then
+		ExpertTable[Work] = 0
 	end
 
-	return HensaTable[Work] or 0
+	return ExpertTable[Work] or 0
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PUTEXPERIENCE
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.PutExperience(Passport, Work, Number)
-	local HensaTable = vRP.Datatable(Passport)
-	if HensaTable then
-		if not HensaTable[Work] then
-			HensaTable[Work] = 0
+	local ExpertTable = vRP.Datatable(Passport)
+	if ExpertTable then
+		if not ExpertTable[Work] then
+			ExpertTable[Work] = 0
 		end
 
-		HensaTable[Work] = HensaTable[Work] + Number
+		ExpertTable[Work] = ExpertTable[Work] + Number
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -3229,7 +3229,7 @@ end
 function vRP.SetPermission(Passport, Permission, Level, Mode)
 	local Datatable = vRP.GetServerData("Permissions:"..Permission)
 	if not Datatable or not Groups[Permission] or not Groups[Permission]["Hierarchy"] then
-		print("Hensa vRP: [SetPermission] Permissão ou hierarquia inválida.")
+		print("Expert vRP: [SetPermission] Permissão ou hierarquia inválida.")
 		return
 	end
 
@@ -3272,7 +3272,7 @@ function vRP.RemovePermission(Passport, Permission)
 	local PassportKey = tostring(Passport)
 
 	if not GroupData or not Datatable then
-		print("Hensa vRP: [RemovePermission] Grupo ou dados da permissão inexistentes para a permissão:", Permission)
+		print("Expert vRP: [RemovePermission] Grupo ou dados da permissão inexistentes para a permissão:", Permission)
 		return
 	end
 
@@ -3383,12 +3383,12 @@ end
 RegisterServerEvent("Salary:Update")
 AddEventHandler("Salary:Update",function(Passport, Amount)
 	local Source = vRP.Source(Passport)
-	local HensaTable = vRP.Datatable(Passport)
-	if HensaTable then
-		if HensaTable["Salary"] ~= nil then
-			HensaTable["Salary"] = HensaTable["Salary"] + parseInt(Amount)
+	local ExpertTable = vRP.Datatable(Passport)
+	if ExpertTable then
+		if ExpertTable["Salary"] ~= nil then
+			ExpertTable["Salary"] = ExpertTable["Salary"] + parseInt(Amount)
 		else
-			HensaTable["Salary"] = parseInt(Amount)
+			ExpertTable["Salary"] = parseInt(Amount)
 		end
 
 		TriggerClientEvent("Notify", Source, "Banco Central", "Você recebeu <b>"..Currency..""..Dotted(Amount).."</b> "..ItemName(DefaultMoneyOne)..".", "money", 5000)
@@ -3403,9 +3403,9 @@ AddEventHandler("Salary:Verify", function(Mode)
 	local Passport = vRP.Passport(source)
 	if Passport then
 		if Mode == "Normal" then
-			local HensaTable = vRP.Datatable(Passport)
-			if HensaTable then
-				local Salary = HensaTable["Salary"] or 0
+			local ExpertTable = vRP.Datatable(Passport)
+			if ExpertTable then
+				local Salary = ExpertTable["Salary"] or 0
 				TriggerClientEvent("Notify", source, "Conta Salário", "Seu saldo é de: <b>"..Currency..""..Dotted(Salary).."</b> "..ItemName(DefaultMoneyOne)..".", "money", 10000)
 			end
 		elseif Mode == "Special" then
@@ -3430,12 +3430,12 @@ AddEventHandler("Salary:Receive", function()
     local passport = vRP.Passport(source)
     
     if passport then
-        local hensaTable = vRP.Datatable(passport)
+        local expertTable = vRP.Datatable(passport)
         
-        if hensaTable then
+        if expertTable then
             if not (SalaryCooldown[passport] and os.time() <= SalaryCooldown[passport]) then
-                if hensaTable["Salary"] then
-                    local salaryAmount = hensaTable["Salary"]
+                if expertTable["Salary"] then
+                    local salaryAmount = expertTable["Salary"]
                     local confirmation = vRP.Request(source, "Banco Central", string.format("Você realmente deseja sacar <b>$%s</b> %s?", Dotted(salaryAmount), ItemName(DefaultMoneyOne)))
                     
                     if confirmation then
@@ -3445,7 +3445,7 @@ AddEventHandler("Salary:Receive", function()
                         
                         vRP.GiveBank(passport, salaryAmount, true)
                         SalaryCooldown[passport] = os.time() + 60
-                        hensaTable["Salary"] = nil
+                        expertTable["Salary"] = nil
                     end
                 else
                     TriggerClientEvent("Notify", source, "Aviso", "Você não possui valores para sacar.", "vermelho", 5000)
@@ -3500,9 +3500,9 @@ CreateThread(function()
 				for Group,SourceAndTime in pairs(Salary) do
 					if Salary[Group][Passport] then
 						if Salary[Group][Passport] <= ActualTime then
-							local Hensa = vRP.GetUserHierarchy(Passport, Group)
-							if Hensa then
-								local GroupSalary = vRP.GetGroupSalary(Group, Hensa)
+							local Expert = vRP.GetUserHierarchy(Passport, Group)
+							if Expert then
+								local GroupSalary = vRP.GetGroupSalary(Group, Expert)
 								if GroupSalary then
 									if Groups[Group]["Type"] == "Work" then
 										if vRP.HasService(Passport, Group) then
@@ -3618,12 +3618,4 @@ AddEventHandler("Disconnect", function(Passport, Source)
 	end
 
 	vRP.SetServerData("Playing:"..Passport,Consult)
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- ONRESOURCESTART
------------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("onResourceStart", function(resource)
-	if resource == "vrp" then
-		print("^5Hensa vRP^7 Premium.")
-	end
 end)

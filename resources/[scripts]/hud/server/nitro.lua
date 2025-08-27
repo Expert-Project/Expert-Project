@@ -5,7 +5,7 @@ GlobalState["Nitro"] = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATENITRO
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.UpdateNitro(Plate, NitroFuel)
+function Expert.UpdateNitro(Plate, NitroFuel)
 	if GlobalState["Nitro"][Plate] then
 		local Nitro = GlobalState["Nitro"]
 		Nitro[Plate] = NitroFuel

@@ -10,7 +10,7 @@ local LastComputedRayEndCoords = false
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SPRAYCONTROLLING
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.SprayControlling(Model)
+function Expert.SprayControlling(Model)
 	local Application = false
 	local SprayCoords = false
 

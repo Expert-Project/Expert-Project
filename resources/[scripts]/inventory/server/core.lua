@@ -8,8 +8,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("inventory",Hensa)
+Expert = {}
+Tunnel.bindInterface("inventory",Expert)
 vPLAYER = Tunnel.getInterface("player")
 vGARAGE = Tunnel.getInterface("garages")
 vCLIENT = Tunnel.getInterface("inventory")
@@ -429,7 +429,7 @@ Loots = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MOUNT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Mount()
+function Expert.Mount()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -485,7 +485,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BLUEPRINT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Blueprint()
+function Expert.Blueprint()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Users["Blueprints"][Passport] then
@@ -563,7 +563,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SEND
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Send(Slot,Amount)
+function Expert.Send(Slot,Amount)
 	local source = source
 	local Slot = tostring(Slot)
 	local Amount = parseInt(Amount,true)
@@ -619,7 +619,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DELIVER
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Deliver(Work)
+function Expert.Deliver(Work)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] then
@@ -816,7 +816,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- USE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Use(Slot,Amount)
+function Expert.Use(Slot,Amount)
 	local source = source
 	local Slot = tostring(Slot)
 	local Amount = parseInt(Amount,true)
@@ -1025,7 +1025,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VERIFYWEAPON
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.VerifyWeapon(Item,Ammo)
+function Expert.VerifyWeapon(Item,Ammo)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not vRP.ConsultItem(Passport,Item) then
@@ -1059,7 +1059,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKEXISTWEAPONS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.CheckExistWeapons(Item)
+function Expert.CheckExistWeapons(Item)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Item ~= "" and Item and not vRP.ConsultItem(Passport,Item) then
@@ -1071,7 +1071,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REMOVETHROWING
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.RemoveThrowing(Item)
+function Expert.RemoveThrowing(Item)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Item ~= "" and Item ~= nil then
@@ -1081,7 +1081,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PREVENTWEAPONS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.PreventWeapons(Item,Ammo)
+function Expert.PreventWeapons(Item,Ammo)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Users["Ammos"][Passport] then
@@ -1676,7 +1676,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STEALPEDS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.StealPeds()
+function Expert.StealPeds()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -1704,7 +1704,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SHOTSFIRED
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.ShotsFired(Vehicle)
+function Expert.ShotsFired(Vehicle)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then

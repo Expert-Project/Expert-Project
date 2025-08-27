@@ -5,8 +5,8 @@ local Tunnel = module("vrp","lib/Tunnel")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("admin", Hensa)
+Expert = {}
+Tunnel.bindInterface("admin", Expert)
 vSERVER = Tunnel.getInterface("admin")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
@@ -19,7 +19,7 @@ LocalPlayer["state"]["Spectate"] = false
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TELEPORTWAY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.TeleportWay()
+function Expert.TeleportWay()
 	local Ped = PlayerPedId()
 	if IsPedInAnyVehicle(Ped) then
 		Ped = GetVehiclePedIsUsing(Ped)
@@ -45,7 +45,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TELEPORTLIMBO
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.TeleportLimbo()
+function Expert.TeleportLimbo()
 	local Ped = PlayerPedId()
 	local Coords = GetEntityCoords(Ped)
 	local _, Node = GetNthClosestVehicleNode(Coords["x"], Coords["y"], Coords["z"], 1, 0, 0, 0)
@@ -196,7 +196,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- LIMPAREA
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Limparea(Coords)
+function Expert.Limparea(Coords)
 	ClearAreaOfPeds(Coords["x"],Coords["y"],Coords["z"],100.0,0)
 	ClearAreaOfCops(Coords["x"],Coords["y"],Coords["z"],100.0,0)
 	ClearAreaOfObjects(Coords["x"],Coords["y"],Coords["z"],100.0,0)
@@ -208,7 +208,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FLASH
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Flash()
+function Expert.Flash()
 	local Pid = PlayerId()
 	if not Flash then
 		TriggerEvent("Notify", "Sucesso", "Super velocidade ativada.", "verde", 5000)

@@ -121,7 +121,7 @@ local Dismantle = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DISMANTLE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Dismantle()
+function Expert.Dismantle()
 	if not Active then
 		Experience = vSERVER.Experience()
 		local Level = ClassCategory(Experience)

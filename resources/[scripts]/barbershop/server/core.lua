@@ -7,12 +7,12 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("barbershop", Hensa)
+Expert = {}
+Tunnel.bindInterface("barbershop", Expert)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECK
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Check()
+function Expert.Check()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not exports["hud"]:Reposed(Passport, source) and not exports["hud"]:Wanted(Passport, source) then
@@ -24,7 +24,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Update(Table,Creation)
+function Expert.Update(Table,Creation)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -39,7 +39,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MODE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Mode()
+function Expert.Mode()
 	local Return = false
 	local source = source
 	local Passport = vRP.Passport(source)

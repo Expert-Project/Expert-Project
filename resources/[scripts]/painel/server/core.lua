@@ -7,8 +7,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("painel",Hensa)
+Expert = {}
+Tunnel.bindInterface("painel",Expert)
 vCLIENT = Tunnel.getInterface("painel")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
@@ -19,7 +19,7 @@ local HierarchyButtons = 2
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DEPARTMENT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Department(Group)
+function Expert.Department(Group)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Player(source)["state"]["Buttons"] then
@@ -70,7 +70,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DISMISS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Dismiss(OtherPassport)
+function Expert.Dismiss(OtherPassport)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Information[Passport] and Passport ~= OtherPassport and vRP.HasGroup(Passport,Information[Passport],HierarchyButtons) and vRP.HasPermission(OtherPassport,Information[Passport]) >= HierarchyButtons then
@@ -85,7 +85,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INVITE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Invite(OtherPassport)
+function Expert.Invite(OtherPassport)
 	local source = source
 	local Passport = vRP.Passport(source)
 	local Identity = vRP.Identity(OtherPassport)
@@ -129,7 +129,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- HIERARCHY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Hierarchy(OtherPassport,Mode)
+function Expert.Hierarchy(OtherPassport,Mode)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Information[Passport] and Passport ~= OtherPassport and vRP.Identity(OtherPassport) and vRP.HasGroup(Passport, Information[Passport], HierarchyButtons) and ((Mode == "Demote" and vRP.HasPermission(OtherPassport, Information[Passport], HierarchyButtons)) or (Mode ~= "Demote" and vRP.HasPermission(OtherPassport, Information[Passport], HierarchyButtons))) then

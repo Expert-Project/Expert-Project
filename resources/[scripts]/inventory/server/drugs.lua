@@ -42,7 +42,7 @@ local List = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKDRUGS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.CheckDrugs()
+function Expert.CheckDrugs()
 	local Return = false
 	local source = source
 	local Passport = vRP.Passport(source)
@@ -65,7 +65,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PAYMENTDRUGS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.PaymentDrugs()
+function Expert.PaymentDrugs()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] and Drugs[Passport] and vRP.TakeItem(Passport,Drugs[Passport][1],Drugs[Passport][2]) then

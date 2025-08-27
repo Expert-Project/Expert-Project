@@ -8,8 +8,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Hensa = {}
-Tunnel.bindInterface("police",Hensa)
+Expert = {}
+Tunnel.bindInterface("police",Expert)
 vKEYBOARD = Tunnel.getInterface("keyboard")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
@@ -18,7 +18,7 @@ local Active = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REQUEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Request()
+function Expert.Request()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] and vRP.HasService(Passport,"Policia") then
@@ -97,7 +97,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DASHBOARDREMOVEMESSAGE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.DashboardRemoveMessage(Number)
+function Expert.DashboardRemoveMessage(Number)
 	local source = source
 	local Number = parseInt(Number)
 	local Passport = vRP.Passport(source)
@@ -120,7 +120,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SEARCHLIST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.SearchList()
+function Expert.SearchList()
 	local Prisons = {}
 	local source = source
 	local Passport = vRP.Passport(source)
@@ -154,7 +154,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SEARCH
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Search(Number)
+function Expert.Search(Number)
 	local source = source
 	local Identity = vRP.Identity(Number)
 	local Passport = vRP.Passport(source)
@@ -167,7 +167,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PERSONAL
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Personal(Number)
+function Expert.Personal(Number)
 	local source = source
 	local Number = parseInt(Number)
 	local Passport = vRP.Passport(source)
@@ -207,7 +207,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PRISON
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Prison(Table)
+function Expert.Prison(Table)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] and vRP.HasService(Passport,"Policia") then
@@ -244,7 +244,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BADGE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Badge(Number)
+function Expert.Badge(Number)
 	local source = source
 	local Number = parseInt(Number)
 	local Passport = vRP.Passport(source)
@@ -259,7 +259,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MESSAGE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Message(Message)
+function Expert.Message(Message)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and vRP.HasGroup(Passport,"Policia",2) then
@@ -273,7 +273,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COURSES
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Hensa.Courses(Table)
+function Expert.Courses(Table)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and vRP.HasGroup(Passport,"Policia",2) then

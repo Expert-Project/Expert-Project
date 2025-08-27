@@ -116,13 +116,13 @@ function tvRP.GetEntityCoords()
 	return Coords["x"],Coords["y"],Coords["z"]
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
--- HENSA:EXPLOSION
+-- EXPERT:EXPLOSION
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("Hensa:Explosion")
-AddEventHandler("Hensa:Explosion", function(X, Y, Z, Type, Damage, Audible, Invisible, Camera, Hensa)
+RegisterNetEvent("Expert:Explosion")
+AddEventHandler("Expert:Explosion", function(X, Y, Z, Type, Damage, Audible, Invisible, Camera, Expert)
 	AddExplosion(X, Y, Z, Type, Damage, Audible, Invisible, Camera)
 
-	if Hensa then
+	if Expert then
 		local Ped = PlayerPedId()
 		local PedCoords = GetEntityCoords(Ped)
 		local Distance = #(vec3(X, Y, Z) - PedCoords)
@@ -149,10 +149,10 @@ AddEventHandler("vRP:Active", function(Passport, Name, Inventory)
 
 	LocalPlayer["state"]:set("Name", Name, true)
 	LocalPlayer["state"]:set("Active", true, false)
-	LocalPlayer["state"]:set("Hensa", true, false)
+	LocalPlayer["state"]:set("Expert", true, false)
 	LocalPlayer["state"]:set("Passport", Passport, true)
 
-	AddTextEntry("FE_THDR_GTAO", "Hensa")
+	AddTextEntry("FE_THDR_GTAO", "Expert")
 
 	local Ped = PlayerPedId()
 	
