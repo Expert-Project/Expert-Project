@@ -9,11 +9,11 @@ UnprisonCoords = vec3(1896.15,2604.44,45.75) -- coordenada padrão de saida da p
 -- SETTINGS
 -----------------------------------------------------------------------------------------------------------------------------------------
 BaseMode = "license" -- license ou steam
-ServerName = "Hensa" -- nome do servidor
+ServerName = "Expert Roleplay" -- nome do servidor
 UsingLbPhone = false -- se você usa ou não o LB-Phone
 UsableF7 = true -- mostrar id encima das cabeças
 Whitelisted = true -- whitelist no servidor
-ServerLink = "https://Hensa.site" -- link de sua preferência
+ServerLink = "https://dsc.gg/expertroleplay" -- link de sua preferência
 GiveIdentity = true -- dar o item identidade ao criar um personagem
 ShakeVehicleCamera = true -- balançar a câmera do personagem quando bater o veículo
 NewItemIdentity = true -- para dar uma identidade única quando criar o personagem
@@ -23,7 +23,7 @@ CanPushCars = false -- se você pode empurrar veículos presisonando a letra Q
 -----------------------------------------------------------------------------------------------------------------------------------------
 Maintenance = false -- true para ativar a manutenção
 MaintenanceLicenses = { -- licenses que podem entrar no servidor durante a manutenção
-	["8d0038693c8d128014fb22709c06f122822d5bf1"] = true
+	["6fdbe68a5e017335f00c753e1c8970212e3675ee"] = true
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TEXTS
